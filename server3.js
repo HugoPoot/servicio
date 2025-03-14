@@ -43,13 +43,13 @@ app.post('/guardar-json', (req, res) => {
         row.titulo_curso ? row.titulo_curso.toString().trim() : "Sin título"
     ]);
 
-    console.log("📊 Valores a insertar:", valores);
+    console.log("Valores a insertar:", valores);
 
     const sql = 'INSERT INTO datos2 (correo, columna1, columna2, desempeño, curso_concluido, fecha_corte, titulo_curso) VALUES ?';
 
     connection.query(sql, [valores], (err, result) => {
         if (err) {
-            console.error('❌ Error al insertar en MySQL:', err.sqlMessage);
+            console.error('Error al insertar en MySQL:', err.sqlMessage);
             return res.status(500).json({ error: 'Error al guardar en la base de datos', detalle: err.sqlMessage });
         }
         console.log(` ${result.affectedRows} filas insertadas correctamente.`);
